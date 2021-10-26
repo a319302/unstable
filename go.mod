@@ -1,4 +1,4 @@
-module unstable
+module github.com/a319302/unstable
 
 go 1.16
 
