@@ -4,7 +4,7 @@ import (
 	"io"
 	"os"
 
-	"github.com/IntelligenceX/fileconversion/ole2"
+	"github.com/a319302/unstable/fileconversion/ole2"
 )
 
 //Open one xls file

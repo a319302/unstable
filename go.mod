@@ -3,15 +3,9 @@ module github.com/a319302/unstable
 go 1.16
 
 require (
-	code.sajari.com/docconv v1.2.0
-	github.com/IntelligenceX/fileconversion v0.0.0-20191030112448-1b64e2d06ace
-	github.com/JalfResi/justext v0.0.0-20170829062021-c0282dea7198
 	github.com/PuerkitoBio/goquery v1.5.1
-	github.com/advancedlogic/GoOse v0.0.0-20191112112754-e742535969c1
 	github.com/codingsince1985/checksum v1.2.3
 	github.com/extrame/goyymmdd v0.0.0-20210114090516-7cc815f00d1a
-	github.com/golang/protobuf v1.4.2
-	github.com/google/go-cmp v0.4.0
 	github.com/ledongthuc/pdf v0.0.0-20210621053716-e28cb8259002
 	github.com/levigross/exp-html v0.0.0-20120902181939-8df60c69a8f5
 	github.com/lu4p/cat v0.1.5
@@ -21,9 +15,7 @@ require (
 	github.com/nfnt/resize v0.0.0-20180221191011-83c6a9932646
 	github.com/nwaples/rardecode v1.1.2
 	github.com/olekukonko/tablewriter v0.0.4
-	github.com/otiai10/gosseract/v2 v2.2.4
 	github.com/richardlehane/mscfb v1.0.3
-	github.com/richardlehane/msoleps v1.0.1
 	github.com/saracen/go7z v0.0.0-20191010121135-9c09b6bd7fda
 	github.com/saracen/go7z-fixtures v0.0.0-20190623165746-aa6b8fba1d2f // indirect
 	github.com/saracen/solidblock v0.0.0-20190426153529-45df20abab6f // indirect

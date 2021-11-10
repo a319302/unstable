@@ -11,7 +11,7 @@ package fileconversion
 import (
 	"io"
 
-	"github.com/IntelligenceX/fileconversion/odf/ods"
+	"github.com/a319302/unstable/fileconversion/odf/ods"
 )
 
 // ODS2Text extracts text of an OpenDocument Spreadsheet

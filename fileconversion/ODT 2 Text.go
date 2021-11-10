@@ -15,7 +15,7 @@ import (
 	"io"
 	"io/ioutil"
 
-	"github.com/IntelligenceX/fileconversion/html2text"
+	"github.com/a319302/unstable/fileconversion/html2text"
 )
 
 // ODT2Text extracts text of an OpenDocument Text file

@@ -12,8 +12,8 @@ import (
 	"path"
 	"strings"
 
-	"github.com/IntelligenceX/fileconversion/html2text"
 	"github.com/PuerkitoBio/goquery"
+	"github.com/a319302/unstable/fileconversion/html2text"
 	"github.com/ssor/bom"
 	"golang.org/x/net/html"
 	"golang.org/x/net/html/charset"
