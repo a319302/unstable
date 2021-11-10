@@ -153,6 +153,14 @@ func MimeTypeByExtension(filename string) string {
 		return "image/tiff"
 	case ".txt":
 		return "text/plain"
+	case ".zip":
+		return "application/zip"
+	case ".rar":
+		return "application/x-rar-compressed"
+	case ".tar":
+		return "application/x-tar"
+	case "*.7z":
+		return "application/x-7z-compressed"
 	}
 	return "unknown"
 }
@@ -191,7 +199,7 @@ func ExtractText(content []byte, mimeType string) (string, error) {
 	case "image/jpeg", "image/png", "image/tif", "image/tiff":
 		return "", fmt.Errorf("ExtractTextFromImage not implemented")
 
-	case "text/plain":
+	case "text/plain", "text/javascript", "text/css":
 		return string(content), nil
 
 	case "application/vnd.ms-excel":
