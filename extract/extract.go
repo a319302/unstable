@@ -1,12 +1,12 @@
 package extract
 
 import (
-	"archive/zip"
 	"bytes"
 	"fmt"
 	"io/ioutil"
 	"path"
 	"strings"
+	"time"
 
 	"github.com/a319302/unstable/fileconversion"
 	"github.com/ledongthuc/pdf"
@@ -75,39 +75,51 @@ func ExtractTextFromXLS(content []byte) (string, error) {
 	return string(buffer.String()), nil
 }
 
+// func ExtractTextFromZIP(content []byte) (string, error) {
+// 	r := bytes.NewReader(content)
+// 	buffer := new(bytes.Buffer)
+
+// 	zipReader, err := zip.NewReader(r, int64(len(content)))
+// 	if err != nil {
+// 		return "", err
+// 	}
+
+// 	for _, file := range zipReader.File {
+// 		if file.FileInfo().IsDir() {
+// 			continue
+// 		}
+// 		rc, err := file.Open()
+// 		if err != nil {
+// 			return "", err
+// 		}
+
+// 		mimeType := MimeTypeByExtension(file.Name)
+
+// 		b, err := ioutil.ReadAll(rc)
+// 		if err != nil {
+// 			return "", err
+// 		}
+
+// 		text, err := ExtractText(b, mimeType)
+// 		if err == nil {
+// 			buffer.WriteString(text)
+// 		}
+
+// 		rc.Close()
+// 	}
+
+// 	return string(buffer.String()), nil
+// }
+
 func ExtractTextFromZIP(content []byte) (string, error) {
-	r := bytes.NewReader(content)
 	buffer := new(bytes.Buffer)
-
-	zipReader, err := zip.NewReader(r, int64(len(content)))
-	if err != nil {
-		return "", err
-	}
-
-	for _, file := range zipReader.File {
-		if file.FileInfo().IsDir() {
-			continue
-		}
-		rc, err := file.Open()
-		if err != nil {
-			return "", err
-		}
-
-		mimeType := MimeTypeByExtension(file.Name)
-
-		b, err := ioutil.ReadAll(rc)
-		if err != nil {
-			return "", err
-		}
-
-		text, err := ExtractText(b, mimeType)
+	fileconversion.ContainerExtractFiles(content, func(name string, size int64, date time.Time, data []byte) {
+		mimeType := MimeTypeByExtension(name)
+		text, err := ExtractText(data, mimeType)
 		if err == nil {
 			buffer.WriteString(text)
 		}
-
-		rc.Close()
-	}
-
+	})
 	return string(buffer.String()), nil
 }
 
@@ -181,6 +193,13 @@ func ExtractText(content []byte, mimeType string) (string, error) {
 
 	case "text/plain":
 		return string(content), nil
+
+	case "application/vnd.ms-excel":
+		return ExtractTextFromXLS(content)
+	case "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet":
+		return ExtractTextFromXLSX(content)
+	case "application/zip", "application/vnd.rar", "application/x-tar", "application/x-7z-compressed":
+		return ExtractTextFromZIP(content)
 	}
 
 	return "", fmt.Errorf("ExtractText not implemented for mimeType %s", mimeType)
