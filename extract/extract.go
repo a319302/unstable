@@ -131,6 +131,10 @@ func MimeTypeByExtension(filename string) string {
 		return "application/vnd.openxmlformats-officedocument.wordprocessingml.document"
 	case ".odt":
 		return "application/vnd.oasis.opendocument.text"
+	case ".xls":
+		return "application/vnd.ms-excel"
+	case ".xlsx":
+		return "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
 	case ".pages":
 		return "application/vnd.apple.pages"
 	case ".pdf":
