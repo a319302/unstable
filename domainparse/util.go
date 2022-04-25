@@ -3,6 +3,7 @@ package domainparse
 import (
 	"strings"
 
+	_ "github.com/a319302/unstable/fileconversion"
 	"golang.org/x/net/idna"
 )
 
